@@ -11,7 +11,7 @@ export const Balance = ({token}) => {
                 </div>
                 <div className="w-20">
                 <button className="w-full bg-slate-500 hover:bg-slate-400 rounded text-white text-sm font-semibold h-8" onClick={async () => {
-                    const response = await axios.get("http://localhost:3000/api/v1/account/balance", {
+                    const response = await axios.get("https://payments-master-1.onrender.com/api/v1/account/balance", {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }

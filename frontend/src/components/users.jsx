@@ -10,7 +10,7 @@ export const Users = ({placeholder}) => {
     useEffect(() => {
         const storedUserId = localStorage.getItem("userId");
         setCurrentUserId(storedUserId);
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filter)
+        axios.get("https://payments-master-1.onrender.com/api/v1/user/bulk?filter=" + filter)
             .then(response => {
                 const filteredUsers = response.data.user.filter(user => user._id !== storedUserId);
                 setUsers(filteredUsers);
