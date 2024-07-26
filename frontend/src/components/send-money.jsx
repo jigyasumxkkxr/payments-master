@@ -16,7 +16,7 @@ export const SendMoney = () => {
 
     return (
         <div className="h-screen w-screen bg-gray-100 flex justify-center items-center">
-            <div className="h-fit w-1/4 bg-white rounded-lg shadow-lg shadow-gray-300 flex flex-col gap-20">
+            <div className="h-fit w-1/4 bg-white rounded-lg shadow-lg shadow-gray-300 flex flex-col gap-20 pb-10">
                 <div>
                     <Heading label={"Send Money"} />
                 </div>
