@@ -7,7 +7,8 @@ Features:
 1. Signup Logic  
 2. Signin Logic
 3. Payments transfer logic to anyone on server
-4. Random Starter Balance  
+4. Random Starter Balance
+5. Review about website
 
 Features that will included in upcoming updates:
 1. Recent Transactions
