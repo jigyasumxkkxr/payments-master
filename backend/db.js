@@ -47,7 +47,26 @@ const accountSchema = new mongoose.Schema({
 
 const Account = mongoose.model('Account', accountSchema)
 
+const reviewSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    review: {
+        type: String,
+        required: true
+    }
+})
+
+const Review = mongoose.model("Review", reviewSchema)
+
+
 module.exports={
     User,
-    Account
+    Account,
+    Review
 }
+
+
+

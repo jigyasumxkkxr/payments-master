@@ -3,9 +3,10 @@ const jwt=require("jsonwebtoken")
 const { signupSchema } = require("./zod_schema/signup")
 const { signinSchema } = require("./zod_schema/signin")
 const { updateSchema } = require("./zod_schema/update")
-const { User,Account } = require("../db")
+const { User,Account, Review } = require("../db")
 const { JWT_SECRET } = require("../config")
 const { authMiddleware } = require("../middleware")
+const { reviewSchema } = require("./zod_schema/review")
 
 const userRouter = express.Router()
 userRouter.use(express.json())
@@ -134,6 +135,28 @@ userRouter.get("/bulk", async (req, res) => {
             _id: user._id
         }))
     })
+})
+
+userRouter.post("/review", authMiddleware, async (req,res) => {
+    const body=req.body
+    const { success } = reviewSchema.safeParse(body)
+    if(!success){
+        res.status(400).json({
+            message: "Error while submitting review"
+        })
+    }
+    try {
+        await Review.create({
+            review:body.review
+        })
+        res.status(200).json({
+            message:"Review Submitted"
+        })
+    }catch(err){
+        res.status(500).json({
+            message: "Server Error"
+        })
+    }
 })
 
 module.exports = {
