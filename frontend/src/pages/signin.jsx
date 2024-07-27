@@ -13,7 +13,28 @@ export const Signin = () => {
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
     const navigate=useNavigate()
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null)
+    const [loading,setLoading] = useState(false)
+
+    async function handleClick () {
+        setLoading(true)
+            try {
+                const response = await axios.post("https://payments-master-1.onrender.com/api/v1/user/signin",{
+                    username,
+                    password
+                })
+                localStorage.setItem("token", response.data.token)
+                localStorage.setItem("name",response.data.name)
+                localStorage.setItem("userId",response.data.userID)
+                navigate("/dashboard")
+            } catch(error){
+                if (error.response) {
+                    setError(error.response.data.message)
+                }
+            } finally {
+                setLoading(false); // Set loading to false when API call finishes
+              }
+        }
 
     return (
         <div className="flex items-center justify-center h-screen w-screen bg-slate-300">
@@ -26,22 +47,7 @@ export const Signin = () => {
                 <InputBoxPassword onChange={ e => {
                     setPassword(e.target.value)
                 }} placeholder={""} label={"Password"} />
-                <Button onClick={async () => {
-                    try {
-                        const response = await axios.post("https://payments-master-1.onrender.com/api/v1/user/signin",{
-                            username,
-                            password
-                        })
-                        localStorage.setItem("token", response.data.token)
-                        localStorage.setItem("name",response.data.name)
-                        localStorage.setItem("userId",response.data.userID)
-                        navigate("/dashboard")
-                    } catch(error){
-                        if (error.response) {
-                            setError(error.response.data.message)
-                        }
-                    }
-                }} label={"Sign in"} />
+                <Button onClick={handleClick} disabled={loading} label={loading ? "loading..." : "Signin"} />
                 <ButtonWarning label={"Don't have an account?"} linkLabel={"Sign Up"} to={"/signup"} />
                 {error && (
                         <div className="text-red-500 flex justify-center items-center mb-12 pt-1">

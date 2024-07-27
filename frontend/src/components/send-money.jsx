@@ -57,7 +57,7 @@ export const SendMoney = () => {
                     </div>
                     {error && (
                         <div className="text-red-500 flex justify-center items-center mb-12 pt-1">
-                        {error}
+                            {error}
                         </div>
                     )}
                 </div>
