@@ -147,7 +147,8 @@ userRouter.post("/review", authMiddleware, async (req,res) => {
     }
     try {
         await Review.create({
-            review:body.review
+            userId: req.userId,
+            review:req.body.review
         })
         res.status(200).json({
             message:"Review Submitted"
