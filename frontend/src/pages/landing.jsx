@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { NavDashboard } from "../components/nav-dashboard"
+import landinglogo from "../assets/Hands Give.svg"
 
 
 export const Landing = () => {
@@ -49,7 +50,7 @@ export const Landing = () => {
 <div class="p-4 sm:ml-64">
    <div class="p-4   rounded-lg flex flex-col gap-12">
       <NavDashboard label={"Payment Master"} userName={"Hello"} />
-      <img src="https://www.svgrepo.com/show/313345/secure-mobile-payment.svg" className="h-96" />
+      <img src={landinglogo} className="h-96" />
       <div className="flex gap-5">
         <button className="bg-slate-900 hover:bg-slate-800 text-slate-100 w-full h-10 rounded-lg text-md font-semibold" onClick={() => {
             navigate("/signup")
